@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.Semaphore;
 
 
 // ANSI Color Codes for enhanced terminal output
@@ -45,7 +46,7 @@ class SharedResources {
      public static final ReentrantLock lockLge = new ReentrantLock();
     
     // TODO #2: Add a Semaphore to limit concurrent process execution
-    // Example: public static final Semaphore cpuSemaphore = new Semaphore(1);
+     public static final Semaphore cpuSemaphore = new Semaphore(1);
     
     // Method to increment context switch counter
     public static void incrementContextSwitch() {
@@ -122,6 +123,8 @@ class Process implements Runnable {
         // This ensures only allowed number of processes run simultaneously
         
         try {
+            SharedResources.cpuSemaphore.acquire(); 
+
             if (startTime == -1) {
                 startTime = System.currentTimeMillis();
             }
@@ -179,10 +182,17 @@ class Process implements Runnable {
                                   Colors.RESET);
             }
             System.out.println();
+
             
-        } finally {
+        }
+              catch (InterruptedException e) {
+            e.printStackTrace();
+            }
+        
+        finally {
             // TODO #4: Release CPU semaphore here
             // Always release in finally block to prevent deadlocks!
+            SharedResources.cpuSemaphore.release(); 
         }
     }
     
@@ -203,6 +213,8 @@ class Process implements Runnable {
     public void runToCompletion() {
         // TODO: Similar synchronization needed here
         try {
+                        SharedResources.cpuSemaphore.acquire(); 
+
             System.out.println(Colors.BRIGHT_CYAN + "  ⚡ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_CYAN + " is the last process, running to completion" + 
                               Colors.RESET + " [" + remainingTime + "ms]");
@@ -217,9 +229,15 @@ class Process implements Runnable {
             System.out.println(Colors.BRIGHT_GREEN + "  ✓ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_GREEN + " finished execution!" + Colors.RESET);
             System.out.println();
-        } catch (InterruptedException e) {
+        } 
+             catch (InterruptedException e) {
             System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
+         }
+
+        finally {
+            SharedResources.cpuSemaphore.release(); 
         }
+        
     }
     
     public String getName() {
