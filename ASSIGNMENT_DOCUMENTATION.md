@@ -14,9 +14,9 @@
 > Set sharing to "Anyone with the link can view".
 > Test the link in incognito/private mode before submitting.
 
-**Video Link**: [Paste your personal Gmail Google Drive link here]
+**Video Link**: https://drive.google.com/file/d/1Gq8Ew6uJr-NrT8pyRTOwb8wOUJUtMog_/view?usp=sharing
 
-**Video filename**: `[YourStudentID]_Assignment3_Synchronization.mp4`
+**Video filename**: `444052883_Assignment3_Synchronization.mp4`
 
 **Verification**:
 - [ ] Link is accessible (tested in incognito mode)
@@ -110,16 +110,21 @@ Checked answers against my implementation to make sure they match
 
 ---
 
-### Entry 5 - [Date, Time]
+### Entry 5 - [29 April, 8:00PM]
 **What I implemented**: 
+Recorded the video and completed the remaining questions.
 
 **Challenges encountered**: 
+Keeping the video within the 5-minute limit.
 
 **How I solved it**: 
+I trimmed unnecessary parts such as pauses and repetition using a video editing too
 
 **Testing approach**: 
+Reviewed the video to ensure clarity and that all required points were covered.
 
 **Time spent**: 
+30 minutes
 
 ---
 
@@ -363,7 +368,7 @@ Synchronization works correctly regardless of the number of processes or time qu
 
 ### What I learned about synchronization:
 
-[6-8 sentences about key concepts, challenges, insights]
+I learned that synchronization controls how multiple threads access shared resources to prevent errors. Without it, race conditions can occur and lead to incorrect results. I used ReentrantLock to protect critical sections and Semaphore to control CPU access. One challenge was choosing between a single lock or multiple locks. I chose multiple locks to improve concurrency. Overall, I learned how to balance performance and correctness in multithreading.
 
 ---
 
@@ -389,29 +394,36 @@ Synchronization is like a turn system where threads take turns and wait. The way
 ## Part 6: GitHub Repository Information
 
 **Repository URL**: 
+https://github.com/HasanMaarouf883/OS-Assignment3-Hasan-Maarouf
 
 **Number of commits**: 
+5
 
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1. Set my student ID: 444052883
+2. mutex lock
+3. Semaphore
+4. documentation questions (Part 2 to Part 6)
+5. Assignment completed
 
 ---
 
 ## Summary
 
 **Total time spent on assignment**: 
+about 2 days
 
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1. I learned how to apply synchronization in real code using locks and semaphores.
+2. I understood the difference between using a single lock for multiple critical sections versus separate locks, and how each approach affects concurrency and performance.
+
+3. I learned that synchronization improves program correctness by preventing race conditions in multithreaded programs.
 
 **Most challenging aspect**: 
+The most challenging aspect was implementing the code correctly because the syntax was new and it was sometimes difficult to decide where to apply synchronization mechanisms.
 
 **What I'm most proud of**: 
+I am most proud of successfully implementing synchronization and achieving correct and consistent results.
 
 ---
 
